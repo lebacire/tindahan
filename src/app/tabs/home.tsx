@@ -7,15 +7,36 @@ import {
 import Button from "../../components/ui/Button";
 import Typography from "../../components/ui/Typography";
 import ProductCard from "../../features/products/components/ProductCard";
+import ProductDashboard from "../../features/products/components/ProductDashboard";
+import ProductSearch from "../../features/products/components/ProductSearch";
 import {
     useProductStore
 } from "../../features/products/store/productStore";
 
 export default function Home() {
 
-    const products = useProductStore(
-        (state) => state.products
-    );
+    const products =
+        useProductStore(
+            (state) => state.products
+        );
+
+
+    const search =
+        useProductStore(
+            (state) => state.search
+        );
+
+
+    const filteredProducts =
+        products.filter(product =>
+
+            product.name
+                .toLowerCase()
+                .includes(
+                    search.toLowerCase()
+                )
+
+        );
 
     const loadProducts = useProductStore(
         (state) => state.loadProducts
@@ -24,20 +45,22 @@ export default function Home() {
     useEffect(() => {
         loadProducts();
     }, []);
-    
+
     return (
         <View style={styles.container}>
             <Typography variant="title">
                 Products
             </Typography>
+            <ProductDashboard />
             <Button
                 title="Add Product"
-                onPress={()=>{
-                router.push("/add-product")
+                onPress={() => {
+                    router.push("/add-product")
                 }}
             />
+            <ProductSearch />
             {
-                products.map((product) => (
+                filteredProducts.map((product) => (
                     <ProductCard
                         key={product.id}
                         product={product}
