@@ -1,14 +1,16 @@
 export const colors = {
-  primary: "#2563EB",
-  secondary: "#64748B",
+  primary: "#F97316",
+  secondary: "#111827",
+  warning: "#F59E0B",
 
-  background: "#FFFFFF",
-  surface: "#F8FAFC",
+  background: "#FEF3E8",
+  surface: "#FFFFFF",
+  surfaceLight: "#FFF7ED",
 
   text: "#111827",
   textLight: "#FFFFFF",
 
-  border: "#E5E7EB",
+  border: "#FDE2C8",
 
   danger: "#DC2626",
   success: "#16A34A",
